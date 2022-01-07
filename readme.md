@@ -51,7 +51,7 @@ model Account {
 ```
 
 ## `posts.prisma`
-```
+```prisma
 model Post {
   id         String @id @default(cuid())
   title      String
@@ -83,7 +83,7 @@ datasource db {
 ```
 
 ## `posts.prisma`
-```
+```prisma
 # You've to repeat the data source connector to allow you to use native database types
 datasource db {
   provider = "mysql"
