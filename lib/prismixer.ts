@@ -30,17 +30,17 @@ export async function prismixer(options: MixerOptions) {
   }
 
   // if the model already exists in our found models, merge the fields
-  schemas[0].list = schemas[0].list.reduce((acc, current: any) => {
-    const x = acc.find((item) => item.type === "model" && item.name === current.name);
-    if (!x) {
-      const newCurr = {
-        ...current,
-      };
-      return [...acc, newCurr];
+  schemas[0].list = schemas[0].list.reduce((acc: Block[], current: Block) => {
+    const block = acc.find(
+      (item: Block) => item.type === "model" && current.type === "model" && item.name === current.name
+    );
+
+    if (!block) {
+      return [...acc, { ...current }];
     } else {
-      if (x.type === "model" && x.properties) {
+      if (block.type === "model" && current.type === "model" && block.properties) {
         // Merge model properties and remove duplicate properties
-        x.properties = uniqBy([...current.properties, ...x.properties], "name");
+        block.properties = uniqBy([...current.properties, ...block.properties], "name");
       }
       return acc;
     }
@@ -48,9 +48,11 @@ export async function prismixer(options: MixerOptions) {
 
   // Order schema by priority
   const sortGuide = ["datasource", "generator", "enum", "model"];
-  schemas[0].list = schemas[0].list.sort((it1, it2) => {
+  schemas[0].list = schemas[0].list.sort((it1: Block, it2: Block) => {
     return sortGuide.indexOf(it1.type) - sortGuide.indexOf(it2.type);
   });
+
+  // Remove block where type is break
   schemas[0].list = schemas[0].list.filter((item) => item.type !== "break");
 
   // remove duplicated elements
