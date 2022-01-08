@@ -4,6 +4,9 @@ This package allow you to create multiple Prisma schema files, supporting cross-
 
 > Learn more about Prisma: [prisma.io](https://prisma.io)
 
+[![Downloads](https://img.shields.io/npm/dt/prismixer.svg?style=flat&colorA=000000&colorB=000000)](https://www.npmjs.com/package/prismixer)
+[![Downloads](https://img.shields.io/npm/v/prismixer.svg?style=flat&colorA=000000&colorB=000000)](https://www.npmjs.com/package/prismixer)
+
 ## Installation
 
 1. Install Prismixer
@@ -25,7 +28,7 @@ yarn add --dev prismixer
 The order of your input files effects how overrides are considered
 ```
 
-## Relationship Example
+## Relation Example
 
 ## `base.prisma`
 ```prisma
