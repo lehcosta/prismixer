@@ -11,6 +11,10 @@
     "prisma-merge",
     "multiple files"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lehcosta/prismixer"
+  },
   "scripts": {
     "prepack": "tsc -b",
     "dev": "tsc-watch",
